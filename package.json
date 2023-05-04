@@ -1,0 +1,8 @@
+{
+  "name": "Api-BagreServices",
+  "version": "1.0.0",
+  "description": "Api do site bagre serviços",
+  "main": "index.js",
+  "author": "Gustavo Alves e Abner",
+  "license": "MIT"
+}
