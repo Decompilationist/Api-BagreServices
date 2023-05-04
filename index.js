@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cookiepParser = require('cookie-parser');
 const cors = require('cors');
-const destinationsRouter = require('./destinations');
 const routes = require('./routes') 
 
 
