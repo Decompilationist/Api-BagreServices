@@ -1,7 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const { env: { JWT_SECRET } } = process;
-const { Users } = require('.');
+const { Users } = require('../../data/models');
 const router = express.Router();
 const crypto = require('crypto');
 
