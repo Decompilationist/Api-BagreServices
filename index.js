@@ -1,4 +1,6 @@
 const express = require('express');
+const package = require('./package.json');
+const routes = require('./routes');
 const mongoose = require('mongoose');
 const config = require('./config');
 const server = require('./server');
