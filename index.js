@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const package = require('./package.json');
-const routes = require('./routes');
+const routes = require('./src/routes');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
