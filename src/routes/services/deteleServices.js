@@ -5,19 +5,15 @@ const { auth } = require('../../controllers/auth');
 const router = express.Router();
 
 router.delete('/services/:code', auth, async (req, res, next) => {
-    const { code } = req.params;
+    const code = parseInt(req.params.code);
 
     try {
         validate.argumentsValidate([
-            { keyName: 'code', value: code, type: 'number', notEmpty: true },
+            { keyName: 'code', value: code, type: 'number', notEmpty: true }
         ]);
 
-        const result = await Services.deleteOne({ code });
-        if (result.deletedCount === 1) {
-            return res.json({ message: 'Service deleted successfully' });
-        } else {
-            return res.status(404).json({ message: 'Service not found' });
-        }
+        const serviceDeleted = await Services.deleteOne({ code });
+        return res.json(serviceDeleted);
     } catch (error) {
         next(error);
     }
