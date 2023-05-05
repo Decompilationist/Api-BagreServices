@@ -6,10 +6,32 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsDoc = require('swagger-jsdoc');
 
 // configurções
 const { env: { PORT, MONGO_URL: url }, argv: [, , port = PORT || 3001], } = process;
 const app = express();
+
+
+const swaggerOptions = {
+    swaggerDefinition: {
+      info: {
+        title: 'API Bagre Services',
+        description: 'Documentação da API',
+        contact: {
+          name: 'Bagre Services',
+          email: 'bagreservices@gmail.com'
+        },
+        servers: ['http://localhost:3001']
+      },
+      openapi: '3.0.0',
+    },
+    apis: ['./swagger.json'] // Caminho para o seu arquivo de configuração do Swagger
+  };
+  
+  const swaggerDocs = swaggerJsDoc(swaggerOptions);
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 (async () => {
     await mongoose.connect(url, { useNewUrlParser: true });

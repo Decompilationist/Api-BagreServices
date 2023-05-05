@@ -5,6 +5,8 @@ const { Users } = require('../../data/models');
 const router = express.Router();
 const crypto = require('crypto');
 
+
+
 // cadastrar usuario
 
 router.post('/users/register', async (req, res, next) => {

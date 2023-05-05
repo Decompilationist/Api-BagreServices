@@ -1,0 +1,208 @@
+{
+   "openapi": "3.0.0",
+   "info": {
+     "title": "Bagre Services API",
+     "description": "API RESTful do Bagre Services",
+     "version": "1.0.0"
+   },
+   "servers": [
+     {
+       "url": "http://localhost:3001",
+       "description": "Servidor Local"
+     }
+   ],
+   "paths": {
+     "/users/register": {
+       "post": {
+         "tags": ["Usuários"],
+         "summary": "Cadastrar um novo usuário",
+         "description": "Endpoint para cadastrar um novo usuário",
+         "operationId": "cadastrarUsuario",
+         "requestBody": {
+           "description": "Dados do novo usuário",
+           "required": true,
+           "content": {
+             "application/json": {
+               "schema": {
+                 "type": "object",
+                 "properties": {
+                   "email": {
+                     "type": "string",
+                     "format": "email",
+                     "description": "Email do usuário"
+                   },
+                   "username": {
+                     "type": "string",
+                     "description": "Nome de usuário do usuário"
+                   },
+                   "password": {
+                     "type": "string",
+                     "description": "Senha do usuário"
+                   }
+                 }
+               },
+               "example": {
+                 "email": "teste@teste.com",
+                 "username": "test",
+                 "password": "senha123"
+               }
+             }
+           }
+         },
+         "responses": {
+           "200": {
+             "description": "Usuário criado com sucesso",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "type": "object",
+                   "properties": {
+                     "user": {
+                       "$ref": "#/components/schemas/User"
+                     }
+                   }
+                 }
+               }
+             }
+           },
+           "400": {
+             "description": "Erro de validação",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "type": "object",
+                   "properties": {
+                     "message": {
+                       "type": "string"
+                     }
+                   }
+                 }
+               }
+             }
+           }
+         }
+       }
+     },
+     "/users/login": {
+       "post": {
+         "tags": ["Usuários"],
+         "summary": "Logar um usuário existente",
+         "description": "Endpoint para logar um usuário existente",
+         "operationId": "logarUsuario",
+         "requestBody": {
+           "description": "Dados de login do usuário",
+           "required": true,
+           "content": {
+             "application/json": {
+               "schema": {
+                 "type": "object",
+                 "properties": {
+                   "email": {
+                     "type": "string",
+                     "format": "email",
+                     "description": "Email ou nome de usuário do usuário"
+                   },
+                   "password": {
+                     "type": "string",
+                     "description": "Senha do usuário"
+                   }
+                 }
+               },
+               "example": {
+                 "email": "teste@teste.com",
+                 "password": "senha123"
+               }
+             }
+           }
+         },
+         "responses": {
+           "200": {
+             "description": "Usuário logado com sucesso",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "type": "object",
+                   "properties": {
+                     "token": {
+                       "type": "string",
+                       "description": "Token JWT",
+                       "paths": {
+                        "/users/login": {
+                          "post": {
+                            "summary": "Login de usuário",
+                            "description": "Efetua o login de um usuário cadastrado, retornando um token JWT que deve ser utilizado nas requisições que necessitam autenticação.",
+                            "tags": [
+                              "Usuários"
+                            ],
+                            "requestBody": {
+                              "required": true,
+                              "content": {
+                                "application/json": {
+                                  "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                      "email": {
+                                        "type": "string",
+                                        "description": "Email do usuário",
+                                        "example": "johndoe@gmail.com"
+                                      },
+                                      "username": {
+                                        "type": "string",
+                                        "description": "Nome de usuário do usuário",
+                                        "example": "johndoe"
+                                      },
+                                      "password": {
+                                        "type": "string",
+                                        "description": "Senha do usuário",
+                                        "example": "12345678"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "responses": {
+                              "200": {
+                                "description": "OK",
+                                "content": {
+                                  "application/json": {
+                                    "schema": {
+                                      "type": "object",
+                                      "properties": {
+                                        "token": {
+                                          "type": "string",
+                                          "description": "Token JWT válido por 12 horas"
+                                        },
+                                        "user": {
+                                          "$ref": "#/components/schemas/User",
+                                          "description": "Usuário logado"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "400": {
+                                "description": "Requisição inválida"
+                              },
+                              "401": {
+                                "description": "Credenciais inválidas"
+                              },
+                              "500": {
+                                "description": "Erro interno do servidor"
+                              }
+                            }
+                          }
+                        }
+                      }
+                     }
+                   }
+                  }
+               }
+            }
+         }
+      }
+     }
+  }
+}
+}
