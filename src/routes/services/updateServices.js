@@ -21,7 +21,7 @@ router.put('/services/:code', auth, async (req, res, next) => {
        const serviceUpdated = await Services.findOneAndUpdate({ code }, { name, specialty, description, price, currency }, { new: true });
        
        if (!serviceUpdated) {
-           const error = new Error(`Service with code ${code} does not exist`);
+           const error = new Error(`Serviço com o código ${code} não existe`);
            error.status = 404;
            throw error;
        }
