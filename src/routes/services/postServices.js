@@ -17,13 +17,6 @@ router.post('/services', auth, async (req, res, next) => {
             { keyName: 'currency', value: currency, type: 'string', notEmpty: true }
         ]);
 
-        const existingService = await Services.findOne({ code });
-        if (existingService) {
-            const error = new Error(`Já existe um serviço com o código ${code}`);
-            error.statusCode = 400;
-            throw error;
-        }
-
         const serviceCreated = await Services.create({ code, name, specialty, description, price, currency });
         return res.json(serviceCreated);
     } catch (error) {
