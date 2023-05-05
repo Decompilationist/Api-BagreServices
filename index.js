@@ -14,23 +14,7 @@ const { env: { PORT, MONGO_URL: url }, argv: [, , port = PORT || 3001], } = proc
 const app = express();
 
 
-const swaggerOptions = {
-    swaggerDefinition: {
-      info: {
-        title: 'API Bagre Services',
-        description: 'Documentação da API',
-        contact: {
-          name: 'Bagre Services',
-          email: 'bagreservices@gmail.com'
-        },
-        servers: ['http://localhost:3001']
-      },
-      openapi: '3.0.0',
-    },
-    apis: ['./swagger.json'] // Caminho para o seu arquivo de configuração do Swagger
-  };
-  
-  const swaggerDocs = swaggerJsDoc(swaggerOptions);
+  const swaggerDocs = require('./swagger.json');
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 (async () => {
