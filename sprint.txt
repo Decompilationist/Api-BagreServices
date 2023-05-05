@@ -1,0 +1,10 @@
+Neste projeto a IANES Systems um dos maiores players de desenvolvimento do mercado foi contratada pela Home Services para desenvolver um aplicativo para o gerenciamento de prestadores de serviços de reparos domésticos tais como encanador, eletricista, jardineiro, marceneiro e pedreiro.
+Na IANES você trabalha num time de desenvolvedores/dev team que recebeu essa tarefa com as seguintes especificações:
+	listagem de todos os profissionais;
+	listagem por profissionais por especialidade;
+	cadastrar novos profissionais;
+	excluir profissionais;
+	alterar informações sobre os profissionais;
+	permitir pesquisar os profissionais por especialidade.
+Os dados das vagas deverão ser armazenados em um banco de dados.
+Popular o banco de dados com informações sobre as vagas.
